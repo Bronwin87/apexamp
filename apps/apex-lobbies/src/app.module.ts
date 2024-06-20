@@ -3,6 +3,8 @@ import { Module } from "@nestjs/common";
 import { UserModule } from "./user/user.module";
 import { LobbyModule } from "./lobby/lobby.module";
 import { TeamModule } from "./team/team.module";
+import { InstallationModule } from "./Installation/installation.module";
+import { ScriptsModule } from "./Scripts/scripts.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -22,6 +24,8 @@ import { AuthModule } from "./auth/auth.module";
     UserModule,
     LobbyModule,
     TeamModule,
+    InstallationModule,
+    ScriptsModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
