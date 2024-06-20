@@ -1,0 +1,44 @@
+datasource db {
+  provider = "sqlserver"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt      DateTime @default(now())
+  discordAccount String?
+  eaAccount      String?
+  email          String?  @unique
+  firstName      String?
+  id             String   @id @default(cuid())
+  lastName       String?
+  lobby          Lobby?   @relation(fields: [lobbyId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  lobbyId        String?
+  password       String
+  roles          Json
+  steamAccount   String?
+  updatedAt      DateTime @updatedAt
+  username       String   @unique
+}
+
+model Lobby {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  password  String?  @unique
+  teams     Team[]
+  updatedAt DateTime @updatedAt
+  users     User[]
+}
+
+model Team {
+  createdAt   DateTime @default(now())
+  id          String   @id @default(cuid())
+  isConfirmed Boolean?
+  lobby       Lobby?   @relation(fields: [lobbyId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  lobbyId     String?
+  name        String?
+  updatedAt   DateTime @updatedAt
+}
